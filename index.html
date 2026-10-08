@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HireDesk - Recruitment System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>HireDesk</h1>
+  <nav aria-label="Main">
+    <button class="tab active" data-view="jobs">Browse jobs</button>
+    <button class="tab" data-view="post">Post a job</button>
+    <button class="tab" data-view="apps">Applications <span id="count">0</span></button>
+  </nav>
+</header>
+
+<main>
+  <section id="jobs" class="view">
+    <div class="filters">
+      <input id="q" type="search" placeholder="Search by title, company or skill" aria-label="Search jobs">
+      <select id="type" aria-label="Job type">
+        <option value="">All types</option>
+        <option>Full-time</option><option>Part-time</option><option>Internship</option>
+      </select>
+    </div>
+    <div id="jobList" class="list"></div>
+  </section>
+
+  <section id="post" class="view" hidden>
+    <h2>Post a job</h2>
+    <form id="jobForm" class="stack">
+      <label>Job title <input name="title" required></label>
+      <label>Company <input name="company" required></label>
+      <label>Location <input name="location" required></label>
+      <label>Type
+        <select name="type"><option>Full-time</option><option>Part-time</option><option>Internship</option></select>
+      </label>
+      <label>Skills (comma separated) <input name="skills" placeholder="HTML, CSS, JavaScript"></label>
+      <label>Description <textarea name="desc" rows="4" required></textarea></label>
+      <button class="primary" type="submit">Publish job</button>
+    </form>
+  </section>
+
+  <section id="apps" class="view" hidden>
+    <h2>Applications</h2>
+    <div id="appList"></div>
+  </section>
+</main>
+
+<dialog id="applyDlg">
+  <form id="applyForm" class="stack">
+    <h2 id="applyTitle">Apply</h2>
+    <label>Full name <input name="name" required></label>
+    <label>Email <input name="email" type="email" required></label>
+    <label>Phone <input name="phone" type="tel"></label>
+    <label>Resume <input name="resume" type="file" accept=".pdf,.doc,.docx"></label>
+    <label>Cover note <textarea name="note" rows="3"></textarea></label>
+    <div class="row">
+      <button type="button" id="cancelApply">Cancel</button>
+      <button class="primary" type="submit">Send application</button>
+    </div>
+  </form>
+</dialog>
+
+<p id="toast" role="status"></p>
+<script src="app.js"></script>
+</body>
+</html>
